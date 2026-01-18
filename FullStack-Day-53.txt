@@ -1,0 +1,47 @@
+Day 53:
+==========
+
+PDBC with MySQL
+===================
+Python connects to MySQL using modules like mysql-connector-python.
+Install:
+
+pip install mysql-connector-python
+
+
+a) Create Database in MySQL
+import mysql.connector
+
+con = mysql.connector.connect(
+    host="localhost", user="root", password="password"
+)
+cur = con.cursor()
+cur.execute("CREATE DATABASE companydb")
+con.close()
+
+Key Point: Database is created at server level.
+
+
+b) Create Table in MySQL Database
+con = mysql.connector.connect(
+    host="localhost", user="root", password="password", database="companydb"
+)
+cur = con.cursor()
+cur.execute("""
+CREATE TABLE employee(
+id INT PRIMARY KEY,
+name VARCHAR(50),
+salary INT)
+""")
+con.close()
+
+Key Point: Table structure is defined using SQL.
+
+
+c) Add Column to Existing Table
+cur.execute("ALTER TABLE employee ADD department VARCHAR(30)")
+
+Key Points:
+Uses ALTER TABLE
+No data loss
+Common in schema updates
